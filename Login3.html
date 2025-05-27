@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
+
+        body {
+            font-family: 'GIST', 'Noto Serif', serif;
+            background-image: url(asset/images/BG.jpg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 2rem 1rem;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        @font-face {
+            font-family: GIST;
+            src: url(asset/Font/GIST-DGROTDhruv.ttf);
+        }
+
+        @media (max-width: 768px) {
+            .hide {
+                display: none;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .hide-card {
+                display: none;
+            }
+
+            .side-box {
+                width: 100%;
+                height: auto;
+                padding: 0.5rem 3rem;
+                font-size: 0.75rem;
+                line-height: 1.2;
+            }
+
+            .side-icon-left,
+            .side-icon-right {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+
+            .card-login {
+                max-width: 100%;
+                padding: 1.5rem 1.5rem;
+            }
+        }
+
+        .logo-text {
+            font-size: 11px;
+            line-height: 1.1;
+            user-select: none;
+            color: white;
+        }
+
+        .logo-text small {
+            display: block;
+            font-weight: 400;
+        }
+
+        h1,
+        h2 {
+            user-select: none;
+            text-align: center;
+            font-family: 'Noto Serif', serif;
+            margin-bottom: 0.25rem;
+        }
+
+        h1 {
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 2rem;
+        }
+
+        h2 {
+            color: white;
+            font-weight: 400;
+            font-size: 1.4rem;
+        }
+
+        .card-login {
+            background: #e6e6e6;
+            border-radius: 1rem;
+            box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15);
+            /* max-width: 360px; */
+            padding: 2rem 2.5rem;
+            z-index: 10;
+        }
+
+        .icon-circle {
+            color: #8b4513;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-control {
+            border-radius: 50px;
+            padding-left: 3.5rem;
+            font-size: 0.8rem;
+            color: #8b4513;
+            background: white;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+
+        .form-control::placeholder {
+            color: #8b4513;
+            opacity: 1;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8b4513;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            user-select: none;
+        }
+
+        .captcha-box {
+            background: white;
+            border-radius: 50px;
+            padding: 0.25rem 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #8b4513;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 80px;
+            justify-content: center;
+            user-select: text;
+            font-family: monospace, monospace;
+            letter-spacing: 0.15em;
+        }
+
+        .captcha-refresh {
+            background: none;
+            border: none;
+            color: #8b4513;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .captcha-refresh:hover {
+            color: #a05a3a;
+        }
+
+        .captcha-input {
+            border-radius: 50px;
+            padding: 0.25rem 1rem;
+            font-size: 0.75rem;
+            color: #8b4513;
+            background: white;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            border: none;
+            flex-grow: 1;
+            min-width: 50px;
+        }
+
+        .forgot-link {
+            font-size: 0.7rem;
+            font-style: italic;
+            color: #a05a3a;
+            user-select: none;
+            text-decoration: none;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            background-color: #8b4513;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: none;
+            color: white;
+            padding: 0.5rem 0;
+            width: 100%;
+            user-select: none;
+        }
+
+        .btn-login:hover {
+            background-color: #a05a3a;
+        }
+
+        /* Gear Icon and Sidebar Styles */
+        .gear-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: #8b4f2a;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            /* Hidden by default */
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s ease;
+            z-index: 999;
+            padding: 20px;
+        }
+
+        .sidebar.open {
+            right: 0;
+            /* Show sidebar */
+        }
+
+        .card {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card-body {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container position-relative" style="z-index:10; max-width:1100px;">
+        <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap mb-2">
+            <div class="text-center text-white" style="font-size:10px; font-family: 'Noto Serif', serif;">
+                <img alt="#" src="asset/images/Mp Logo.png" width="65" height="65" class="mb-3" />
+                <div class="logo-text fs-7 mb-3">
+                    Government of<br />Madhya Pradesh
+                </div>
+            </div>
+            <div class="mb-4" style="width:3px; height:40px; background:rgba(255,255,255,0.7);"></div>
+            <div class="text-center text-white" style="font-size:10px; font-family: 'Noto Serif', serif;">
+                <img alt="#" src="asset/images/VSK_LOGO.jpeg" width="65" height="65" class="mb-2" />
+                <div class="logo-text fs-7 mb-3">
+                    Vidhya Samiksha Kendra<br />Madhya Pradesh
+                </div>
+            </div>
+        </div>
+        <h1 class="fs-1 mb-2" style="font-family: 'GIST'">स्कूल शिक्षा विभाग, मध्यप्रदेश शासन</h1>
+        <h2 class="fs-3" style="font-family: 'GIST'">विद्या समीक्षा केंद्र</h2>
+        <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-4 mt-4 flex-wrap">
+            <!-- Left side boxes -->
+
+            <!-- Center login box -->
+            <div class="card-login Shadow">
+                <div class="icon-circle">
+                    <i class="fas fa-user-circle" style="font-size: 70px;"></i>
+                </div>
+                <form id="loginForm" onsubmit="return validateCaptcha(event)">
+                    <div class="position-relative mb-4">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" class="form-control" placeholder="User ID" required />
+                    </div>
+                    <div class="position-relative mb-4">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" class="form-control" placeholder="Password" required />
+                    </div>
+                    <div class="captcha-container">
+                        <div class="captcha-box" id="captchaText" title="Captcha code">
+                            <!-- Captcha text inserted by JS -->
+                        </div>
+                        <button type="button" aria-label="Refresh Captcha" class="captcha-refresh"
+                            onclick="generateCaptcha()">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                        <input type="text" placeholder="Enter Captcha" class="captcha-input" id="captchaInput" required
+                            autocomplete="off" />
+                    </div>
+                    <div class="text-end mb-4">
+                        <a href="#" class="forgot-link">Forgot Password ?</a>
+                    </div>
+                    <button type="submit" class="btn btn-login">
+                        LOGIN <i class="fas fa-key"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Gear Icon -->
+    <div class="gear-icon" onclick="toggleSidebar()">
+        <i class="fas fa-cog fa-spin"></i>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="card">
+            <a href="index.html">
+            <img src="asset/images/VSK Login_1.jpg" alt="Login" />
+            <div class="card-body">Login 1</div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="Login2.html">
+            <img src="asset/images/VSK Login_2.jpg" alt="Login" />
+            <div class="card-body">Login 2</div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="Login3.html">
+            <img src="asset/images/VSK_Login_4.jpg" alt="Login" />
+            <div class="card-body">Login 3</div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="Login4.html">
+            <img src="asset/images/VSK Login_3.jpg" alt="Login" />
+            <div class="card-body">Login 4</div>
+            </a>
+        </div>
+    </div>
+
+
+    <script>
+        const captchaTextEl = document.getElementById('captchaText');
+        const captchaInputEl = document.getElementById('captchaInput');
+        let currentCaptcha = '';
+
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            currentCaptcha = captcha;
+            captchaTextEl.textContent = captcha;
+            captchaInputEl.value = '';
+            captchaInputEl.focus();
+        }
+
+        function validateCaptcha(event) {
+            event.preventDefault();
+            const userInput = captchaInputEl.value.trim();
+            if (userInput === currentCaptcha) {
+                alert('Captcha verified successfully! Form submitted.');
+                // Here you can proceed with form submission or further validation
+                // For demo, just reset captcha and form
+                generateCaptcha();
+                event.target.reset();
+            } else {
+                alert('Incorrect Captcha. Please try again.');
+                generateCaptcha();
+            }
+        }
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+        // Generate initial captcha on page load
+        window.onload = generateCaptcha;
+    </script>
+</body>
+
+</html>

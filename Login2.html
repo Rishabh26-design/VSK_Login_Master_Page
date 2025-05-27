@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            background-image: url(asset/images/BG2.jpg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        @media (max-width:800px){
+            .iconCard{
+                display:none
+            }
+        }
+
+        .container-custom {
+            max-width: 960px;
+            width: 100%;
+            box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @media (min-width: 768px) {
+            .container-custom {
+                flex-direction: row;
+            }
+        }
+
+        .left-panel {
+            background: white;
+            padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: slideIn 0.5s ease-in-out;
+            min-width: 320px;
+        }
+
+        .right-panel {
+            background-color: #7a3d14;
+            padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+            flex: 1;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            animation: slideIn 0.5s ease-in-out;
+            min-width: 320px;
+        }
+
+        .btn-login {
+            border-radius: 50rem;
+            border: 1px solid white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            color: white;
+        }
+
+        .btn-login:hover,
+        .btn-login:focus {
+            background-color: white;
+            color: #7a3d14;
+            outline: none;
+            box-shadow: none;
+            animation: pulse 1s infinite;
+        }
+
+        .form-control {
+            border-radius: 50rem;
+            padding-left: 2.5rem;
+            color: #7a3d14;
+            height: 2.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #7a3d14;
+            box-shadow: 0 0 0 0.25rem rgba(122, 61, 20, 0.25);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7a3d14;
+            pointer-events: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .form-control:focus + .input-icon {
+            color: #7a3d14;
+        }
+
+        .captcha-box {
+            background: rgba(255, 255, 255, 0);
+            border-radius: 50rem;
+            padding: 0.25rem 0.75rem;
+            color: #f0f0f0;
+            font-weight: 600;
+            font-family: monospace, monospace;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            user-select: none;
+            border: 1px solid #ffffff;
+            white-space: nowrap;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .captcha-box:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .captcha-label {
+            border: 1px solid #ffffff;
+            border-radius: 0.5rem;
+            padding: 0 0.25rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .captcha-refresh {
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .captcha-refresh:hover {
+            transform: rotate(180deg);
+        }
+
+        .forgot-password {
+            font-size: 0.75rem;
+            font-style: italic;
+            color: #d9bfa3;
+            text-align: right;
+            margin-bottom: 0;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: white;
+        }
+
+        .left-panel .icon-bg {
+            position: absolute;
+            border-radius: 0 0 0 100%;
+            opacity: 0.5;
+            width: 4rem;
+            height: 4rem;
+            top: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+        .left-panel .icon-container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.7rem;
+            line-height: 1.1rem;
+            padding: 1.25rem 0.5rem 1.25rem 0.5rem;
+            border-radius: 0.5rem;
+            color: black;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .left-panel .icon-container:hover {
+            transform: scale(1.1);
+        }
+
+        .left-panel .icon-container i {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            line-height: 1;
+        }
+
+        .icon-blue {
+            background-color: #93bbf9;
+            color: #3a7de0;
+        }
+
+        .icon-blue .icon-bg {
+            background-color: #5a8de9;
+        }
+
+        .icon-green {
+            background-color: #7ed3a3;
+            color: #2f9e5a;
+        }
+
+        .icon-green .icon-bg {
+            background-color: #4dbf6a;
+        }
+
+        .icon-orange {
+            background-color: #f0b172;
+            color: #c36a1f;
+        }
+
+        .icon-orange .icon-bg {
+            background-color: #e18a2a;
+        }
+
+        .icon-red {
+            background-color: #f0807f;
+            color: #b93a3a;
+        }
+
+        .icon-red .icon-bg {
+            background-color: #e04a4a;
+        }
+
+        .icon-purple {
+            background-color: #cda3f7;
+            color: #7a3dbf;
+        }
+
+        .icon-purple .icon-bg {
+            background-color: #9a5ee0;
+        }
+
+        .icon-sky {
+            background-color: #5db9e6;
+            color: #1a7dbf;
+        }
+
+        .icon-sky .icon-bg {
+            background-color: #2a8ae0;
+        }
+
+        /* Make icon containers square and equal height */
+        .icon-container {
+            aspect-ratio: 1 / 1;
+            max-width: 100%;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767.98px) {
+            .container-custom {
+                flex-direction: column;
+                box-shadow: none;
+                border-radius: 0.5rem;
+            }
+
+            .left-panel,
+            .right-panel {
+                border-radius: 0.5rem;
+                max-width: 100%;
+                padding: 2rem 1.5rem;
+            }
+
+            .right-panel {
+                margin-top: 1rem;
+            }
+
+            .form-control {
+                height: 2.5rem;
+            }
+
+            .captcha-box {
+                font-size: 0.9rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        } */
+          /* Gear Icon and Sidebar Styles */
+        .gear-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: #8b4f2a;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Hidden by default */
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s ease;
+            z-index: 999;
+            padding: 20px;
+        }
+
+        .sidebar.open {
+            right: 0; /* Show sidebar */
+        }
+
+        .card {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card-body {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-custom">
+        <div class="left-panel">
+            <img alt="Official seal logo with red and gold colors" height="80" src="asset/images/mp-logo__.png"
+                width="80" class="mb-1" />
+            <h1 class="text-center mb-1"
+                style="color: #7a3d14; font-weight: 800; font-size: 2rem; ">
+                स्कूल शिक्षा विभाग
+            </h1>
+            <p class="text-center mb-1"
+                style="color: #7a3d14; font-weight: 600; font-size: 01rem; ">
+                मध्यप्रदेश शासन
+            </p>
+            <p class="text-center mb-0"
+                style="color: #0b6b6b; font-weight: 600; font-size: 1.7rem; ">
+                विद्या समीक्षा केंद्र
+            </p>
+            <div class="row g-3 w-100 iconCard mt-4" style="max-width: 400px;">
+                <div class="col-6 col-sm-4 position-relative">
+                    <div class="icon-container icon-blue">
+                        <div class="icon-bg position-absolute top-0 end-0"></div>
+                        <i class="fas fa-user"></i>
+                        <div>Child Tracking<br />System (VER)</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 position-relative">
+                    <div class="icon-container icon-green">
+                        <div class="icon-bg position-absolute top-0 end-0"></div>
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <div>Teacher Training<br />&amp; Attendance</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 position-relative">
+                    <div class="icon-container icon-orange">
+                        <div class="icon-bg position-absolute top-0 end-0"></div>
+                        <i class="fas fa-user-edit"></i>
+                        <div>Student Enrollment<br />&amp; Attendance</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 position-relative">
+                    <div class="icon-container icon-red">
+                        <div class="icon-bg position-absolute top-0 end-0"></div>
+                        <i class="fas fa-home"></i>
+                        <div>e-Hostel<br />Management</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 position-relative">
+                    <div class="icon-container icon-purple">
+                        <div class="icon-bg position-absolute top-0 end-0"></div>
+                        <i class="fas fa-school"></i>
+                        <div>School Management<br />&amp; Monitoring</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 position-relative">
+                    <div class="icon-container icon-sky">
+                        <div class="icon-bg position-absolute top-0 end-0"></div>
+                        <i class="fas fa-building"></i>
+                        <div>Civil &amp; Infrastructure<br />Management</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <img alt="Brown square logo with white tree and decorative border" height="100"
+                src="asset/images/vsk_Logo.jpeg" width="100" class="mb-2" />
+            <h2 class="fw-semibold fs-5 mb-4">VSK USER LOGIN</h2>
+            <form class="w-100" style="max-width: 320px;">
+                <div class="mb-3 position-relative">
+                    <i class="fas fa-user input-icon"></i>
+                    <input class="form-control" placeholder="User ID" type="text" autocomplete="username" required />
+                </div>
+                <div class="mb-3 position-relative">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input class="form-control" placeholder="Password" type="password" autocomplete="current-password"
+                        required />
+                </div>
+                <div class="d-flex align-items-center mb-2 gap-2 flex-wrap">
+                    <div class="captcha-box">
+                        <span class="captcha-label">Captcha</span>
+                        <span id="captcha-text"></span>
+                    </div>
+                    <div class="captcha-refresh" role="button" tabindex="0" aria-label="Refresh captcha" title="Refresh Captcha">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <input class="form-control rounded-pill flex-grow-1" placeholder="Enter Captcha" type="text"
+                        style="min-width: 150px;" required />
+                </div>
+                <p class="forgot-password mb-2">Forgot Password?</p>
+                <button class="btn btn-login w-100 d-flex justify-content-center align-items-center gap-2"
+                    type="submit">
+                    LOGIN <i class="fas fa-key"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Gear Icon -->
+    <div class="gear-icon" onclick="toggleSidebar()">
+        <i class="fas fa-cog fa-spin"></i>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="card">
+            <a href="index.html">
+            <img src="asset/images/VSK Login_1.jpg" alt="Login" />
+            <div class="card-body">Login 1</div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="Login2.html">
+            <img src="asset/images/VSK Login_2.jpg" alt="Login" />
+            <div class="card-body">Login 2</div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="Login3.html">
+            <img src="asset/images/VSK_Login_4.jpg" alt="Login" />
+            <div class="card-body">Login 3</div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="Login4.html">
+            <img src="asset/images/VSK Login_3.jpg" alt="Login" />
+            <div class="card-body">Login 4</div>
+            </a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const captchaText = document.getElementById('captcha-text');
+            const captchaRefresh = document.querySelector('.captcha-refresh');
+
+            // Function to generate a random CAPTCHA
+            function generateCaptcha() {
+                const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                let captcha = "";
+                for (let i = 0; i < 6; i++) {
+                    captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return captcha;
+            }
+
+            // Function to update the CAPTCHA text
+            function updateCaptcha() {
+                captchaText.textContent = generateCaptcha();
+            }
+
+            // Initial CAPTCHA generation
+            updateCaptcha();
+
+            // Event listener for the refresh button
+            captchaRefresh.addEventListener('click', updateCaptcha);
+        });
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>
