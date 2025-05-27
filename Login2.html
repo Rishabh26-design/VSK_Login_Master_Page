@@ -1,487 +1,267 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>Login Page</title>
+    <title>School Education Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Roboto&display=swap" rel="stylesheet" />
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #fce9c9 0%, #f9e6c3 50%, #f9d18a 100%);
+            background-image: url(asset/images/VSK_BG.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             min-height: 100vh;
-            margin: 0;
-            background: url('asset/images/BG2.jpg') no-repeat center center/cover;
+
+        }
+        @media  (max-width: 600px){
+        body{
+            background-image: url(asset/images/VSK_BG_M.jpg);
+        }
+            
+        }
+
+        .font-devanagari {
+            font-family: 'Noto Serif', serif;
+        }
+
+        .icon-circle {
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
+            width: 64px;
+            height: 64px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 2rem 1rem 3rem;
-            background-color: rgba(0, 0, 0, 0.3);
-            background-blend-mode: overlay;
-        }
-
-        @font-face {
-            font-family: GIST;
-            src: url(Assets/Font/GIST-DGROTDhruv.ttf);
-        }
-
-
-        @media (max-width: 750px) {
-            .left-panel {
-                display: none !important;
-            }
-
-            main {
-                flex-direction: column;
-            }
-
-            .right-panel {
-                border-radius: 0.5rem !important;
-            }
-        }
-
-        .container-custom {
-            max-width: 960px;
-            width: 100%;
-            box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
-            border-radius: 0.5rem;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            background: white;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @media (min-width: 968px) {
-            .container-custom {
-                flex-direction: row;
-            }
-        }
-
-        header {
-            display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            max-width: 900px;
-            width: 100%;
-        }
-
-        header img {
-            width: clamp(80px, 15vw, 110px);
-            height: clamp(80px, 15vw, 110px);
-            object-fit: contain;
-            user-select: none;
-            -webkit-filter: drop-shadow(0px 0px 8px #ffffff9f);
-            filter: drop-shadow(0px 0px 8px #ffffff9f);
-            /* animation: float 3s ease-in-out infinite; */
-        }
-
-        .header-text-yellow {
-            color: #ffd500;
-            font-weight: 800;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            line-height: 1.1;
-            user-select: none;
-            font-family: 'GIST';
-            text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            white-space: normal;
-            margin: 0.5rem 0;
-        }
-
-        .header-text-white {
-            color: white;
-            font-weight: 700;
-            font-size: clamp(1.3rem, 3.5vw, 2.2rem);
-            user-select: none;
-            font-family: 'GIST';
-            text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            white-space: normal;
-            margin: 0.5rem 0;
-        }
-
-        @media (max-width: 976px) {
-            header {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-
-        main {
-            display: flex;
-            max-width: 900px;
-            width: 100%;
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 0 15px rgb(0 0 0 / 0.3);
-            overflow: hidden;
-            flex-wrap: wrap;
-        }
-
-        .left-panel {
-            background: #f9fafa;
-            border-radius: 0.5rem 0 0 0.5rem;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            padding: 1.2rem;
-            flex: 1 1 50%;
-            max-width: 450px;
-        }
-
-        .color-box {
-            position: relative;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 3.5rem 1rem 1rem 1rem;
-            color: black;
-            overflow: hidden;
-            min-height: 110px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            user-select: none;
-            text-align: center;
-        }
-
-        .color-box i {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            color: white;
-            font-size: 2.2rem;
-            z-index: 10;
-            -webkit-filter: drop-shadow(0px 3px 2px #0000009f);
-            filter: drop-shadow(0px 3px 2px #0000009f);
-        }
-
-        .color-box .icon-secondary {
-            position: absolute;
-            top: 1.5rem;
-            left: 3.5rem;
-            color: white;
-            font-size: 1rem;
-            z-index: 10;
-        }
-
-        .color-box .bg-shape {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100px;
-            height: 100px;
-            border-bottom-right-radius: 80px;
-            opacity: 0.4;
-            z-index: 1;
-        }
-
-        .box-1 {
-            background-color: #a9c6f9;
-        }
-
-        .box-1:hover {
-            transform: translateY(-3px);
-            transition: transform 0.2s ease, filter 0.2s ease;
-        }
-
-
-        .box-1 .bg-shape {
-            background-color: #4a7de8;
-        }
-
-        .box-2 {
-            background-color: #7dd6a9;
-        }
-
-        .box-2:hover {
-            transform: translateY(-3px);
-            transition: transform 0.2s ease, filter 0.2s ease;
-        }
-
-        .box-2 .bg-shape {
-            background-color: #2bb67a;
-        }
-
-        .box-3 {
-            background-color: #f0b06a;
-        }
-
-        .box-3:hover {
-            transform: translateY(-3px);
-            transition: transform 0.2s ease, filter 0.2s ease;
-        }
-
-        .box-3 .bg-shape {
-            background-color: #e07a1a;
-        }
-
-        .box-4 {
-            background-color: #e87a7a;
-        }
-
-        .box-4:hover {
-            transform: translateY(-3px);
-            transition: transform 0.2s ease, filter 0.2s ease;
-        }
-
-        .box-4 .bg-shape {
-            background-color: #d94a4a;
-        }
-
-        .box-5 {
-            background-color: #c88aff;
-        }
-
-        .box-5:hover {
-            transform: translateY(-3px);
-            transition: transform 0.2s ease, filter 0.2s ease;
-        }
-
-        .box-5 .bg-shape {
-            background-color: #9a4af8;
-        }
-
-        .box-6 {
-            background-color: #7ac6e8;
-        }
-
-        .box-6:hover {
-            transform: translateY(-3px);
-            transition: transform 0.2s ease, filter 0.2s ease;
-        }
-
-        .box-6 .bg-shape {
-            background-color: #2a9adf;
-        }
-
-        .right-panel {
-            background-color: #7a3d14;
-            padding: 2.5rem 2.5rem 2.5rem 2.5rem;
-            flex: 1;
-            color: white;
-            display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
-            /* animation: slideIn 0.5s ease-in-out; */
-            /* min-width: 450px; */
+            transition: transform 0.3s ease;
         }
 
-        .btn-login {
-            border-radius: 50rem;
-            border: 1px solid white;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1.5rem;
+        .icon-circle:hover {
+            transform: scale(1.1);
+        }
+
+        .login-icon {
+            border-radius: 50%;
+            border: 2px solid #7a3f17;
+            color: #7a3f17;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+            animation: fadeIn 1s ease-in;
+        }
+
+        .input-group-text.bg-brown {
+            background-color: #7a3f17;
+            border-color: #7a3f17;
             color: white;
         }
 
-        .btn-login:hover,
-        .btn-login:focus {
-            background-color: white;
-            color: #7a3d14;
-            outline: none;
-            box-shadow: none;
-            animation: pulse 1s infinite;
+        .form-control.brown-border {
+            border-color: #7a3f17;
+            color: #7a3f17;
         }
 
-        .form-control {
-            border-radius: 50rem;
-            padding-left: 2.5rem;
-            color: #7a3d14;
-            height: 2.75rem;
-            transition: all 0.3s ease;
+        .form-control.brown-border::placeholder {
+            color: #7a3f17;
+            opacity: 1;
         }
 
-        .form-control:focus {
-            border-color: #7a3d14;
-            box-shadow: 0 0 0 0.25rem rgba(122, 61, 20, 0.25);
+        .btn-brown {
+            background-color: #7a3f17;
+            border-color: #7a3f17;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
         }
 
-        .input-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #7a3d14;
-            pointer-events: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        .form-control:focus+.input-icon {
-            color: #7a3d14;
+        .btn-brown:hover,
+        .btn-brown:focus {
+            background-color: #5a2c0f;
+            border-color: #5a2c0f;
         }
 
         .captcha-box {
-            background: rgba(255, 255, 255, 0);
-            border-radius: 50rem;
-            padding: 0.25rem 0.75rem;
-            color: #f0f0f0;
+            font-family: monospace;
+            letter-spacing: 0.2em;
             font-weight: 600;
-            font-family: monospace, monospace;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
+            font-size: 0.9rem;
+            border: 1px solid #7a3f17;
+            padding: 0.25rem 0.5rem;
             user-select: none;
-            border: 1px solid #ffffff;
-            white-space: nowrap;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            min-width: 90px;
+            text-align: center;
+            border-radius: 0.25rem;
+            background: white;
         }
 
-        .captcha-box:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .captcha-label {
-            border: 1px solid #ffffff;
-            border-radius: 0.5rem;
-            padding: 0 0.25rem;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .captcha-refresh {
-            color: white;
-            font-size: 1.25rem;
+        .refresh-btn {
+            color: #7a3f17;
+            border: none;
+            background: transparent;
+            font-size: 1.2rem;
             cursor: pointer;
-            user-select: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 0 0.5rem;
             transition: transform 0.3s ease;
         }
 
-        .captcha-refresh:hover {
+        .refresh-btn:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .refresh-btn:hover {
             transform: rotate(180deg);
         }
 
-        .forgot-password {
-            font-size: 0.75rem;
-            font-style: italic;
-            color: #d9bfa3;
-            text-align: right;
-            margin-bottom: 0;
-            transition: color 0.3s ease;
-        }
-
-        .forgot-password:hover {
-            color: white;
-        }
-
-        .left-panel .icon-bg {
-            position: absolute;
-            border-radius: 0 0 0 100%;
-            opacity: 0.5;
-            width: 4rem;
-            height: 4rem;
-            top: 0;
-            right: 0;
-            z-index: -1;
-        }
-
-        .left-panel .icon-container {
-            position: relative;
-            z-index: 1;
-            text-align: center;
+        .footer-icons p {
             font-weight: 700;
-            font-size: 0.7rem;
-            line-height: 1.1rem;
-            padding: 1.25rem 0.5rem 1.25rem 0.5rem;
-            border-radius: 0.5rem;
-            color: black;
-            cursor: pointer;
-            user-select: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-            transition: transform 0.3s ease;
+            font-size: 0.75rem;
+            line-height: 1.1;
+            margin-top: 0.5rem;
         }
 
-        .left-panel .icon-container:hover {
-            transform: scale(1.1);
+        .footer-icons p span {
+            font-weight: 400;
+            display: block;
         }
 
-        .left-panel .icon-container i {
+        .footer-icons .icon-circle {
+            width: 64px;
+            height: 64px;
             font-size: 1.5rem;
-            margin-bottom: 0;
-            line-height: 1;
         }
 
-        .icon-blue {
-            background-color: #93bbf9;
-            color: #3a7de0;
+        .bg-lightgray {
+            background-color: #e0e0e0;
+            height: 80px;
+            width: 100%;
+            margin-top: 1rem;
         }
 
-        .icon-blue .icon-bg {
-            background-color: #5a8de9;
+        .logo-img {
+            max-width: 100px;
+            max-height: 100px;
+            object-fit: contain;
+            animation: fadeIn 1s ease-in;
         }
 
-        .icon-green {
-            background-color: #7ed3a3;
-            color: #2f9e5a;
+        .top-logos {
+            position: relative;
+            z-index: 10;
         }
 
-        .icon-green .icon-bg {
-            background-color: #4dbf6a;
+        .bg-sunburst-top {
+            position: absolute;
+            top: 140px;
+            left: 0;
+            right: 0;
+            opacity: 0.2;
+            z-index: 0;
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
         }
 
-        .icon-orange {
-            background-color: #f0b172;
-            color: #c36a1f;
+        .bg-sunburst-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0.2;
+            z-index: 0;
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
         }
 
-        .icon-orange .icon-bg {
-            background-color: #e18a2a;
+        .photo-left,
+        .photo-right {
+            position: absolute;
+            bottom: 120px;
+            max-width: 200px;
+            max-height: 300px;
+            object-fit: contain;
+            box-shadow: 0 0 15px rgb(0 0 0 / 0.15);
+            z-index: 10;
         }
 
-        .icon-red {
-            background-color: #f0807f;
-            color: #b93a3a;
+        .photo-left {
+            left: 10px;
         }
 
-        .icon-red .icon-bg {
-            background-color: #e04a4a;
+        .photo-right {
+            right: 10px;
         }
 
-        .icon-purple {
-            background-color: #cda3f7;
-            color: #7a3dbf;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
-        .icon-purple .icon-bg {
-            background-color: #9a5ee0;
-        }
+        @media (max-width: 575.98px) {
+            .footer-icons>div {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
 
-        .icon-sky {
-            background-color: #5db9e6;
-            color: #1a7dbf;
-        }
+            .footer-icons .icon-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
 
-        .icon-sky .icon-bg {
-            background-color: #2a8ae0;
-        }
+            .footer-icons p {
+                font-size: 0.65rem;
+            }
 
-        /* Make icon containers square and equal height */
-        .icon-container {
-            aspect-ratio: 1 / 1;
-            max-width: 100%;
-        }
+            .photo-left,
+            .photo-right {
+                position: static;
+                max-width: 120px;
+                max-height: 180px;
+                margin: 1rem auto 0;
+                display: block;
+                box-shadow: none;
+            }
 
+            body {
+                padding-bottom: 0;
+            }
+
+            .footer-icons {
+                position: static;
+                margin-top: 2rem;
+            }
+
+            .top-logos {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .top-logos img {
+                max-width: 80px;
+                max-height: 80px;
+            }
+
+            .top-logos .text-center {
+                margin: 0.5rem 0;
+            }
+        }
         /* Gear Icon and Sidebar Styles */
         .gear-icon {
             position: fixed;
@@ -496,8 +276,7 @@
         .sidebar {
             position: fixed;
             top: 0;
-            right: -300px;
-            /* Hidden by default */
+            right: -300px; /* Hidden by default */
             width: 300px;
             height: 100%;
             background-color: white;
@@ -508,8 +287,7 @@
         }
 
         .sidebar.open {
-            right: 0;
-            /* Show sidebar */
+            right: 0; /* Show sidebar */
         }
 
         .card {
@@ -532,157 +310,205 @@
 </head>
 
 <body>
-
-    <header>
-        <img src="asset/images/Mp Logo.png" alt="$" width="90" height="90" />
-        <div>
-            <h1 class="header-text-yellow">स्कूल शिक्षा विभाग, मध्यप्रदेश शासन</h1>
-            <h2 class="header-text-white">विद्या समीक्षा केंद्र</h2>
+    <div class="container top-logos d-flex flex-row justify-content-between align-items-center pt-5">
+        <img src="asset/images/mp-logo__.png" alt="#" class="logo-img" />
+        <div class="text-center">
+            <h1 class="font-devanagari text-brown fw-bold fs-2 fs-sm-3 mb-3" style="color:#6b3a1a;">स्कूल शिक्षा विभाग,
+                मध्यप्रदेश शासन</h1>
+            <h3 class="font-devanagari text-info fw-semibold fs-3 mb-3" style="color:#0b6f6f;">विद्या समीक्षा केंद्र
+            </h3>
         </div>
-    </header>
-    <main>
-        <section class="left-panel">
-            <div class="color-box box-1">
-                <i class="fas fa-child"></i>
-                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
-                    Child Tracking<br />System (VER)
-                </div>
-                <div class="bg-shape"></div>
+        <img src="asset/images/VSK_LOGO.jpeg" alt="#" class="logo-img" />
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-center my-4 position-relative" style="z-index:10;">
+        <div class="bg-white rounded-3 shadow p-4" style="max-width: 360px; width: 100%;">
+            <div class="login-icon mx-auto">
+                <i class="fas fa-user"></i>
             </div>
-            <div class="color-box box-2">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
-                    Teacher Training<br />&amp; Attendance
+            <p class="text-center fw-bold mb-4" style="font-size: 0.85rem;">USER LOGIN</p>
+            <form id="loginForm">
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-brown"><i class="fas fa-user"></i></span>
+                    <input type="text" id="username" class="form-control brown-border" placeholder="User ID" aria-label="User ID" />
                 </div>
-                <div class="bg-shape"></div>
-            </div>
-            <div class="color-box box-3">
-                <i class="fas fa-id-card"></i>
-                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
-                    Student Enrollment<br />&amp; Attendance
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-brown"><i class="fas fa-lock"></i></span>
+                    <input type="password" id="password" class="form-control brown-border" placeholder="Password"
+                        aria-label="Password" />
                 </div>
-                <div class="bg-shape"></div>
-            </div>
-            <div class="color-box box-4">
-                <i class="fas fa-bed "></i>
-                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
-                    e-Hostel<br />Management
-                </div>
-                <div class="bg-shape"></div>
-            </div>
-            <div class="color-box box-5">
-                <i class="fas fa-school"></i>
-                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
-                    School Management<br />&amp; Monitoring
-                </div>
-                <div class="bg-shape"></div>
-            </div>
-            <div class="color-box box-6">
-                <i class="fas fa-landmark"></i>
-                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
-                    Civil &amp; Infrastructure<br />Management
-                </div>
-                <div class="bg-shape"></div>
-            </div>
-        </section>
-        <div class="right-panel">
-            <img alt="Brown square logo with white tree and decorative border" height="100"
-                src="asset/images/VSK_LOGO.jpeg" width="100" class="mb-0" />
-            <h2 class="fw-semibold fs-5 mb-2">VSK USER LOGIN</h2>
-            <form class="w-100" style="max-width: 320px;">
-                <div class="mb-3 position-relative">
-                    <i class="fas fa-user input-icon"></i>
-                    <input class="form-control" placeholder="User ID" type="text" autocomplete="username" required />
-                </div>
-                <div class="mb-3 position-relative">
-                    <i class="fas fa-lock input-icon"></i>
-                    <input class="form-control" placeholder="Password" type="password" autocomplete="current-password"
-                        required />
-                </div>
-                <div class="d-flex align-items-center mb-2 gap-2 flex-wrap">
-                    <div class="captcha-box">
-                        <span class="captcha-label">Captcha</span>
-                        <span id="captcha-text"></span>
+
+                <div class="d-flex align-items-center mb-4 gap-2">
+                    <div>
+                        <div class="captcha-label">Captcha</div>
+                        <div class="captcha-box" id="captcha">
+                            <!-- Captcha will be generated here -->
+                        </div>
                     </div>
-                    <div class="captcha-refresh" role="button" tabindex="0" aria-label="Refresh captcha"
-                        title="Refresh Captcha">
+                    <button aria-label="Refresh Captcha" class="refresh-btn refresh-captcha" type="button"
+                        id="refreshCaptcha">
                         <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <input class="form-control rounded-pill flex-grow-1" placeholder="Enter Captcha" type="text"
-                        style="min-width: 150px;" required />
+                    </button>
+                    <input class="form-control flex-grow-1 mt-3 brown-border" placeholder="Enter Captcha" type="text"
+                        id="captchaInput" required />
                 </div>
-                <p class="forgot-password mb-2">Forgot Password?</p>
-                <button class="btn btn-login w-100 d-flex justify-content-center align-items-center gap-2"
-                    type="submit">
-                    LOGIN <i class="fas fa-key"></i>
-                </button>
+
+                <p class="text-end fst-italic text-secondary mb-3" style="font-size: 0.75rem;">Forgot Password?</p>
+                <button type="submit" class="text-light btn btn-brown w-100">LOGIN</button>
             </form>
         </div>
-        <!-- Gear Icon -->
-        <div class="gear-icon" onclick="toggleSidebar()">
-            <i class="fas fa-cog fa-spin"></i>
+    </div>
+
+    <div class="container-fluid fixed-bottom footer-icons py-3" style="z-index: 10;">
+        <div class="container d-flex flex-wrap justify-content-between gap-3 gap-sm-0" style="max-width: 1280px;">
+            <div class="d-flex flex-column align-items-center flex-fill flex-sm-grow-0" style="min-width: 100px; max-width: 16.66%;">
+                <div class="icon-circle" style="background-color:#4a7de0;">
+                    <i class="fas fa-child text-white"></i>
+                </div>
+                <p class="text-center mt-2 mb-0 fs-6">
+                    Child Tracking System<br />
+                     (VER)
+                </p>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill flex-sm-grow-0" style="min-width: 100px; max-width: 16.66%;">
+                <div class="icon-circle" style="background-color:#3bb673;">
+                    <i class="fas fa-user-graduate text-white"></i>
+                </div>
+                <p class="text-center mt-2 mb-0 fs-6">
+                    Teacher Training<br />
+                     &amp; Attendance
+                </p>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill flex-sm-grow-0" style="min-width: 100px; max-width: 16.66%;">
+                <div class="icon-circle" style="background-color:#db8a2f;">
+                    <i class="fas fa-users text-white"></i>
+                </div>
+                <p class="text-center mt-2 mb-0 fs-6">
+                    Student Enrollment<br />
+                    &amp; Attendance
+                </p>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill flex-sm-grow-0" style="min-width: 100px; max-width: 16.66%;">
+                <div class="icon-circle" style="background-color:#e05a5a;">
+                    <i class="fas fa-bed text-white"></i>
+                </div>
+                <p class="text-center mt-2 mb-0 fs-6">
+                    e-Hostel<br />
+                    Management
+                </p>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill flex-sm-grow-0" style="min-width: 100px; max-width: 16.66%;">
+                <div class="icon-circle" style="background-color:#a56de0;">
+                    <i class="fas fa-university text-white"></i>
+                </div>
+                <p class="text-center mt-2 mb-0 fs-6">
+                    School Management<br />
+                    &amp; Monitoring
+                </p>
+            </div>
+            <div class="d-flex flex-column align-items-center flex-fill flex-sm-grow-0" style="min-width: 100px; max-width: 16.66%;">
+                <div class="icon-circle" style="background-color:#1b9ad6;">
+                    <i class="fas fa-hard-hat text-white"></i>
+                </div>
+                <p class="text-center mt-2 mb-0 fs-6">
+                    Civil &amp; Infrastructure<br />
+                    Management
+                </p>
+            </div>
         </div>
+    </div>
+<!-- Gear Icon -->
+    <div class="gear-icon" onclick="toggleSidebar()">
+        <i class="fas fa-cog fa-spin"></i>
+    </div>
 
-        <!-- Sidebar -->
-        <div id="sidebar" class="sidebar">
-            <div class="card">
-                <a href="index.html">
-                    <img src="asset/images/VSK Login_1.jpg" alt="Login" />
-                    <div class="card-body">Login 1</div>
-                </a>
-            </div>
-            <div class="card">
-                <a href="Login2.html">
-                    <img src="asset/images/VSK Login_2.jpg" alt="Login" />
-                    <div class="card-body">Login 2</div>
-                </a>
-            </div>
-            <div class="card">
-                <a href="Login3.html">
-                    <img src="asset/images/VSK_Login_4.jpg" alt="Login" />
-                    <div class="card-body">Login 3</div>
-                </a>
-            </div>
-            <div class="card">
-                <a href="Login4.html">
-                    <img src="asset/images/VSK Login_3.jpg" alt="Login" />
-                    <div class="card-body">Login 4</div>
-                </a>
-            </div>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="card">
+            <a href="index.html">
+            <img src="asset/images/VSK Login_1.jpg" alt="Login" />
+            <div class="card-body">Login 1</div>
+            </a>
         </div>
+        <div class="card">
+            <a href="Login2.html">
+            <img src="asset/images/VSK Login_2.jpg" alt="Login" />
+            <div class="card-body">Login 2</div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="Login3.html">
+            <img src="asset/images/VSK_Login_4.jpg" alt="Login" />
+            <div class="card-body">Login 3</div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="Login4.html">
+            <img src="asset/images/VSK Login_3.jpg" alt="Login" />
+            <div class="card-body">Login 4</div>
+            </a>
+        </div>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const captchaText = document.getElementById('captcha-text');
-                const captchaRefresh = document.querySelector('.captcha-refresh');
+    <script>
+        // Function to generate random captcha
+        function generateCaptcha() {
+            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * chars.length);
+                captcha += chars[randomIndex];
+            }
+            return captcha;
+        }
 
-                // Function to generate a random CAPTCHA
-                function generateCaptcha() {
-                    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-                    let captcha = "";
-                    for (let i = 0; i < 6; i++) {
-                        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-                    }
-                    return captcha;
+        // Function to display captcha
+        function displayCaptcha() {
+            const captchaElement = document.getElementById('captcha');
+            currentCaptcha = generateCaptcha();
+            captchaElement.textContent = currentCaptcha;
+        }
+
+        // Initialize captcha on page load
+        let currentCaptcha;
+        document.addEventListener('DOMContentLoaded', function () {
+            displayCaptcha();
+
+            // Refresh captcha button
+            document.getElementById('refreshCaptcha').addEventListener('click', displayCaptcha);
+
+            // Form submission
+            document.getElementById('loginForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const enteredCaptcha = document.getElementById('captchaInput').value;
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Validate captcha
+                if (enteredCaptcha !== currentCaptcha) {
+                    alert('Invalid captcha. Please try again.');
+                    displayCaptcha();
+                    document.getElementById('captchaInput').value = '';
+                    return;
                 }
 
-                // Function to update the CAPTCHA text
-                function updateCaptcha() {
-                    captchaText.textContent = generateCaptcha();
-                }
+                // Here you would typically validate username/password with server
+                // For demo, we'll just show an alert
+                alert('Login submitted!\nUsername: ' + username + '\nPassword: ' + password);
 
-                // Initial CAPTCHA generation
-                updateCaptcha();
-
-                // Event listener for the refresh button
-                captchaRefresh.addEventListener('click', updateCaptcha);
+                // Reset form and generate new captcha
+                this.reset();
+                displayCaptcha();
             });
-            function toggleSidebar() {
+        });
+        function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('open');
         }
-        </script>
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
