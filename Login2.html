@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,21 +10,36 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <style>
         body {
-            font-family: "Roboto", sans-serif;
-            background-image: url(asset/images/BG2.jpg);
+            font-family: 'Roboto', sans-serif;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
             margin: 0;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+            background: url('asset/images/BG2.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem 1rem 3rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            background-blend-mode: overlay;
         }
-        @media (max-width:800px){
-            .iconCard{
-                display:none
+
+        @font-face {
+            font-family: GIST;
+            src: url(Assets/Font/GIST-DGROTDhruv.ttf);
+        }
+
+
+        @media (max-width: 750px) {
+            .left-panel {
+                display: none !important;
+            }
+
+            main {
+                flex-direction: column;
+            }
+
+            .right-panel {
+                border-radius: 0.5rem !important;
             }
         }
 
@@ -39,21 +55,211 @@
             animation: fadeIn 1s ease-in-out;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 968px) {
             .container-custom {
                 flex-direction: row;
             }
         }
 
-        .left-panel {
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        header img {
+            width: clamp(80px, 15vw, 110px);
+            height: clamp(80px, 15vw, 110px);
+            object-fit: contain;
+            user-select: none;
+            -webkit-filter: drop-shadow(0px 0px 8px #ffffff9f);
+            filter: drop-shadow(0px 0px 8px #ffffff9f);
+            /* animation: float 3s ease-in-out infinite; */
+        }
+
+        .header-text-yellow {
+            color: #ffd500;
+            font-weight: 800;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            line-height: 1.1;
+            user-select: none;
+            font-family: 'GIST';
+            text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            white-space: normal;
+            margin: 0.5rem 0;
+        }
+
+        .header-text-white {
+            color: white;
+            font-weight: 700;
+            font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+            user-select: none;
+            font-family: 'GIST';
+            text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            white-space: normal;
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 976px) {
+            header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        main {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
             background: white;
-            padding: 2.5rem 2.5rem 2.5rem 2.5rem;
-            flex: 1;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 15px rgb(0 0 0 / 0.3);
+            overflow: hidden;
+            flex-wrap: wrap;
+        }
+
+        .left-panel {
+            background: #f9fafa;
+            border-radius: 0.5rem 0 0 0.5rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1.2rem;
+            flex: 1 1 50%;
+            max-width: 450px;
+        }
+
+        .color-box {
+            position: relative;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 3.5rem 1rem 1rem 1rem;
+            color: black;
+            overflow: hidden;
+            min-height: 110px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            animation: slideIn 0.5s ease-in-out;
-            min-width: 320px;
+            justify-content: flex-start;
+            user-select: none;
+            text-align: center;
+        }
+
+        .color-box i {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            color: white;
+            font-size: 2.2rem;
+            z-index: 10;
+            -webkit-filter: drop-shadow(0px 3px 2px #0000009f);
+            filter: drop-shadow(0px 3px 2px #0000009f);
+        }
+
+        .color-box .icon-secondary {
+            position: absolute;
+            top: 1.5rem;
+            left: 3.5rem;
+            color: white;
+            font-size: 1rem;
+            z-index: 10;
+        }
+
+        .color-box .bg-shape {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            border-bottom-right-radius: 80px;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .box-1 {
+            background-color: #a9c6f9;
+        }
+
+        .box-1:hover {
+            transform: translateY(-3px);
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+
+        .box-1 .bg-shape {
+            background-color: #4a7de8;
+        }
+
+        .box-2 {
+            background-color: #7dd6a9;
+        }
+
+        .box-2:hover {
+            transform: translateY(-3px);
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .box-2 .bg-shape {
+            background-color: #2bb67a;
+        }
+
+        .box-3 {
+            background-color: #f0b06a;
+        }
+
+        .box-3:hover {
+            transform: translateY(-3px);
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .box-3 .bg-shape {
+            background-color: #e07a1a;
+        }
+
+        .box-4 {
+            background-color: #e87a7a;
+        }
+
+        .box-4:hover {
+            transform: translateY(-3px);
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .box-4 .bg-shape {
+            background-color: #d94a4a;
+        }
+
+        .box-5 {
+            background-color: #c88aff;
+        }
+
+        .box-5:hover {
+            transform: translateY(-3px);
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .box-5 .bg-shape {
+            background-color: #9a4af8;
+        }
+
+        .box-6 {
+            background-color: #7ac6e8;
+        }
+
+        .box-6:hover {
+            transform: translateY(-3px);
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .box-6 .bg-shape {
+            background-color: #2a9adf;
         }
 
         .right-panel {
@@ -65,8 +271,8 @@
             flex-direction: column;
             align-items: center;
             gap: 1.5rem;
-            animation: slideIn 0.5s ease-in-out;
-            min-width: 320px;
+            /* animation: slideIn 0.5s ease-in-out; */
+            /* min-width: 450px; */
         }
 
         .btn-login {
@@ -111,7 +317,7 @@
             transition: color 0.3s ease;
         }
 
-        .form-control:focus + .input-icon {
+        .form-control:focus+.input-icon {
             color: #7a3d14;
         }
 
@@ -276,64 +482,7 @@
             max-width: 100%;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 767.98px) {
-            .container-custom {
-                flex-direction: column;
-                box-shadow: none;
-                border-radius: 0.5rem;
-            }
-
-            .left-panel,
-            .right-panel {
-                border-radius: 0.5rem;
-                max-width: 100%;
-                padding: 2rem 1.5rem;
-            }
-
-            .right-panel {
-                margin-top: 1rem;
-            }
-
-            .form-control {
-                height: 2.5rem;
-            }
-
-            .captcha-box {
-                font-size: 0.9rem;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-20px);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        /* @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        } */
-          /* Gear Icon and Sidebar Styles */
+        /* Gear Icon and Sidebar Styles */
         .gear-icon {
             position: fixed;
             top: 20px;
@@ -347,7 +496,8 @@
         .sidebar {
             position: fixed;
             top: 0;
-            right: -300px; /* Hidden by default */
+            right: -300px;
+            /* Hidden by default */
             width: 300px;
             height: 100%;
             background-color: white;
@@ -358,7 +508,8 @@
         }
 
         .sidebar.open {
-            right: 0; /* Show sidebar */
+            right: 0;
+            /* Show sidebar */
         }
 
         .card {
@@ -381,71 +532,63 @@
 </head>
 
 <body>
-    <div class="container-custom">
-        <div class="left-panel">
-            <img alt="Official seal logo with red and gold colors" height="80" src="asset/images/mp-logo__.png"
-                width="80" class="mb-1" />
-            <h1 class="text-center mb-1"
-                style="color: #7a3d14; font-weight: 800; font-size: 2rem; ">
-                स्कूल शिक्षा विभाग
-            </h1>
-            <p class="text-center mb-1"
-                style="color: #7a3d14; font-weight: 600; font-size: 01rem; ">
-                मध्यप्रदेश शासन
-            </p>
-            <p class="text-center mb-0"
-                style="color: #0b6b6b; font-weight: 600; font-size: 1.7rem; ">
-                विद्या समीक्षा केंद्र
-            </p>
-            <div class="row g-3 w-100 iconCard mt-4" style="max-width: 400px;">
-                <div class="col-6 col-sm-4 position-relative">
-                    <div class="icon-container icon-blue">
-                        <div class="icon-bg position-absolute top-0 end-0"></div>
-                        <i class="fas fa-user"></i>
-                        <div>Child Tracking<br />System (VER)</div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 position-relative">
-                    <div class="icon-container icon-green">
-                        <div class="icon-bg position-absolute top-0 end-0"></div>
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <div>Teacher Training<br />&amp; Attendance</div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 position-relative">
-                    <div class="icon-container icon-orange">
-                        <div class="icon-bg position-absolute top-0 end-0"></div>
-                        <i class="fas fa-user-edit"></i>
-                        <div>Student Enrollment<br />&amp; Attendance</div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 position-relative">
-                    <div class="icon-container icon-red">
-                        <div class="icon-bg position-absolute top-0 end-0"></div>
-                        <i class="fas fa-home"></i>
-                        <div>e-Hostel<br />Management</div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 position-relative">
-                    <div class="icon-container icon-purple">
-                        <div class="icon-bg position-absolute top-0 end-0"></div>
-                        <i class="fas fa-school"></i>
-                        <div>School Management<br />&amp; Monitoring</div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 position-relative">
-                    <div class="icon-container icon-sky">
-                        <div class="icon-bg position-absolute top-0 end-0"></div>
-                        <i class="fas fa-building"></i>
-                        <div>Civil &amp; Infrastructure<br />Management</div>
-                    </div>
-                </div>
-            </div>
+
+    <header>
+        <img src="asset/images/Mp Logo.png" alt="$" width="90" height="90" />
+        <div>
+            <h1 class="header-text-yellow">स्कूल शिक्षा विभाग, मध्यप्रदेश शासन</h1>
+            <h2 class="header-text-white">विद्या समीक्षा केंद्र</h2>
         </div>
+    </header>
+    <main>
+        <section class="left-panel">
+            <div class="color-box box-1">
+                <i class="fas fa-child"></i>
+                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
+                    Child Tracking<br />System (VER)
+                </div>
+                <div class="bg-shape"></div>
+            </div>
+            <div class="color-box box-2">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
+                    Teacher Training<br />&amp; Attendance
+                </div>
+                <div class="bg-shape"></div>
+            </div>
+            <div class="color-box box-3">
+                <i class="fas fa-id-card"></i>
+                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
+                    Student Enrollment<br />&amp; Attendance
+                </div>
+                <div class="bg-shape"></div>
+            </div>
+            <div class="color-box box-4">
+                <i class="fas fa-bed "></i>
+                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
+                    e-Hostel<br />Management
+                </div>
+                <div class="bg-shape"></div>
+            </div>
+            <div class="color-box box-5">
+                <i class="fas fa-school"></i>
+                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
+                    School Management<br />&amp; Monitoring
+                </div>
+                <div class="bg-shape"></div>
+            </div>
+            <div class="color-box box-6">
+                <i class="fas fa-landmark"></i>
+                <div style="position: relative; z-index: 10; margin-top: 2.5rem; line-height: 1.2;">
+                    Civil &amp; Infrastructure<br />Management
+                </div>
+                <div class="bg-shape"></div>
+            </div>
+        </section>
         <div class="right-panel">
             <img alt="Brown square logo with white tree and decorative border" height="100"
-                src="asset/images/VSK_LOGO.jpeg" width="100" class="mb-2" />
-            <h2 class="fw-semibold fs-5 mb-4">VSK USER LOGIN</h2>
+                src="asset/images/VSK_LOGO.jpeg" width="100" class="mb-0" />
+            <h2 class="fw-semibold fs-5 mb-2">VSK USER LOGIN</h2>
             <form class="w-100" style="max-width: 320px;">
                 <div class="mb-3 position-relative">
                     <i class="fas fa-user input-icon"></i>
@@ -461,7 +604,8 @@
                         <span class="captcha-label">Captcha</span>
                         <span id="captcha-text"></span>
                     </div>
-                    <div class="captcha-refresh" role="button" tabindex="0" aria-label="Refresh captcha" title="Refresh Captcha">
+                    <div class="captcha-refresh" role="button" tabindex="0" aria-label="Refresh captcha"
+                        title="Refresh Captcha">
                         <i class="fas fa-sync-alt"></i>
                     </div>
                     <input class="form-control rounded-pill flex-grow-1" placeholder="Enter Captcha" type="text"
@@ -474,73 +618,71 @@
                 </button>
             </form>
         </div>
-    </div>
+        <!-- Gear Icon -->
+        <div class="gear-icon" onclick="toggleSidebar()">
+            <i class="fas fa-cog fa-spin"></i>
+        </div>
 
-    <!-- Gear Icon -->
-    <div class="gear-icon" onclick="toggleSidebar()">
-        <i class="fas fa-cog fa-spin"></i>
-    </div>
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <div class="card">
+                <a href="index.html">
+                    <img src="asset/images/VSK Login_1.jpg" alt="Login" />
+                    <div class="card-body">Login 1</div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="Login2.html">
+                    <img src="asset/images/VSK Login_2.jpg" alt="Login" />
+                    <div class="card-body">Login 2</div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="Login3.html">
+                    <img src="asset/images/VSK_Login_4.jpg" alt="Login" />
+                    <div class="card-body">Login 3</div>
+                </a>
+            </div>
+            <div class="card">
+                <a href="Login4.html">
+                    <img src="asset/images/VSK Login_3.jpg" alt="Login" />
+                    <div class="card-body">Login 4</div>
+                </a>
+            </div>
+        </div>
 
-    <!-- Sidebar -->
-    <div id="sidebar" class="sidebar">
-        <div class="card">
-            <a href="index.html">
-            <img src="asset/images/VSK Login_1.jpg" alt="Login" />
-            <div class="card-body">Login 1</div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="Login2.html">
-            <img src="asset/images/VSK Login_2.jpg" alt="Login" />
-            <div class="card-body">Login 2</div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="Login3.html">
-            <img src="asset/images/VSK_Login_4.jpg" alt="Login" />
-            <div class="card-body">Login 3</div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="Login4.html">
-            <img src="asset/images/VSK Login_3.jpg" alt="Login" />
-            <div class="card-body">Login 4</div>
-            </a>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const captchaText = document.getElementById('captcha-text');
-            const captchaRefresh = document.querySelector('.captcha-refresh');
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const captchaText = document.getElementById('captcha-text');
+                const captchaRefresh = document.querySelector('.captcha-refresh');
 
-            // Function to generate a random CAPTCHA
-            function generateCaptcha() {
-                const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-                let captcha = "";
-                for (let i = 0; i < 6; i++) {
-                    captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+                // Function to generate a random CAPTCHA
+                function generateCaptcha() {
+                    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                    let captcha = "";
+                    for (let i = 0; i < 6; i++) {
+                        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+                    }
+                    return captcha;
                 }
-                return captcha;
-            }
 
-            // Function to update the CAPTCHA text
-            function updateCaptcha() {
-                captchaText.textContent = generateCaptcha();
-            }
+                // Function to update the CAPTCHA text
+                function updateCaptcha() {
+                    captchaText.textContent = generateCaptcha();
+                }
 
-            // Initial CAPTCHA generation
-            updateCaptcha();
+                // Initial CAPTCHA generation
+                updateCaptcha();
 
-            // Event listener for the refresh button
-            captchaRefresh.addEventListener('click', updateCaptcha);
-        });
-
-        function toggleSidebar() {
+                // Event listener for the refresh button
+                captchaRefresh.addEventListener('click', updateCaptcha);
+            });
+            function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('open');
         }
-    </script>
+        </script>
 </body>
 
 </html>
